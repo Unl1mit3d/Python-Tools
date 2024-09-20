@@ -1,3 +1,4 @@
+import datetime
 import tkinter as tk
 from tkinter import ttk, messagebox
 from datetime import datetime as dt
@@ -5,8 +6,8 @@ from datetime import datetime as dt
 def calculate_age():
     day = int(day_combobox.get())
     month = int(month_combobox.get())
-    year = int(year_entry.get())
-    
+    year = int(year_combobox.get())
+
     try:
         dob = dt(year=year, month=month, day=day)
         age = dt.today().year - dob.year - ((dob.month, dob.day) > (dt.today().month, dt.today().day))
@@ -15,9 +16,9 @@ def calculate_age():
         messagebox.showerror("Error", "Invalid date of birth.")
 
 root = tk.Tk()
-root.title("Age Calculator")
+root.title("Age Calculator by @Unl1mit3d")
 
-# Day 
+# Day
 tk.Label(root, text="Select Day:").pack(pady=5)
 day_combobox = ttk.Combobox(root, values=list(range(1, 32)))
 day_combobox.pack(pady=5)
@@ -31,8 +32,9 @@ month_combobox.current(0)
 
 # Year
 tk.Label(root, text="Enter Year (aaaa):").pack(pady=5)
-year_entry = tk.Entry(root)
-year_entry.pack(pady=5)
+year_combobox = ttk.Combobox(root, values=list(range(1920, 2024)))
+year_combobox.pack(pady=5)
+year_combobox.current(0)
 
 tk.Button(root, text="Calculate Age", command=calculate_age).pack(pady=20)
 
